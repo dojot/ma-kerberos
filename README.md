@@ -1,6 +1,8 @@
-# ma-kerberos
+# Kerberos
 
-** Kerberos REST API**
+Kerberos is a mutual authentication protocol that uses tickets to allow entities communicating over a non-secure network.
+
+**Kerberos REST API**
 
 | name          | path                          | methods  | description |
 | ------------- |-------------                  | -----:|--|
