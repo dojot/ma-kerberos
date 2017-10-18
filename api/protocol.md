@@ -5,9 +5,10 @@
 
 [/protocol/requestAS](#requestAS)
 
+<a name="requestAP"></a>
 * **URL**
 
-  <a name="requestAP"></a>/protocol/requestAP
+  /protocol/requestAP
 
 * **Method:**
 
@@ -25,8 +26,8 @@
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
-    **Content:**
+  * **Code:** 200
+  * **Content:**
 
     ```json
     {
@@ -71,8 +72,8 @@
 
 * **Success Response:**
 
-  * **Code:** 200 <br />
-    **Content:**
+  * **Code:** 200
+  * **Content:**
 
     ```json
     {
