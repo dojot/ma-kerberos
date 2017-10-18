@@ -86,7 +86,7 @@
         <dependent-module archiveName="jackson-core-2.6.3.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/com/fasterxml/jackson/core/jackson-core/2.6.3/jackson-core-2.6.3.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="jedis-2.9.0-cpqd.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/redis/clients/jedis/2.9.0-cpqd/jedis-2.9.0-cpqd.jar">
+        <dependent-module archiveName="jedis-2.9.0-dojot.jar" deploy-path="/" handle="module:/resource/jedis/jedis">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="commons-pool2-2.4.2.jar" deploy-path="/" handle="module:/classpath/var/M2_REPO/org/apache/commons/commons-pool2/2.4.2/commons-pool2-2.4.2.jar">
