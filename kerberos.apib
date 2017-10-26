@@ -1,0 +1,109 @@
+FORMAT: 1A
+
+# Kerberos
+
+Kerberos is a mutual authentication protocol that uses tickets to allow entities communicating over a non-secure network.
+
+
+## Health [/health]
+
+Health can obtain Kerberos status information
+
+### Status [/health/status]
+
+#### Get Kerberos healh status [GET]
+
++ Response 200
+
+
+## Protocol [/protocol]
+
+Protocol defines APIs used to perform mutual authentication
+
+### Data Structures
+
+#### Request (object)
++ request: 0adeadbeefdeadbeefa3a66aa8cb7caa39030303030303030303030303030303037658250a(string)
++ transactionId: 3998beec2b484d42cdbbd088ed1fec29 (string)
++ sessionId: 7ae76bf2bb4c4dc3cdffda3c5e37c9e4 (string)
+
+#### Reply (object)
++ kerberosReply: 0BDEADBEEFDEADBEEFA3A66AA8CB7CAA39030303030303030303030303030303030C6A51EA9A74BBD7FFE745FE7B7FAE3B370D1B45B8DBF80DBA758E6E613CC2B2FDFFCC1580994AC1CB82FDA97AA81C1A7F9D44C645A7B6110BCEC722B8261860309CD870550E6E716ED41AFB1DFBE3C277A84397706DA98A87654361CD299F88C7E309A2346C8F6496218914840F7F34E0A1B039434D19F70C6E521B5632A01FDEEE34C1FA09A58858B123A647F06C5E48F15D8C1E95AE601E867D3BB7A0BBFBF4552C44D3705C25B4A2FDABC199751231BEAE05B3E6112DF3D2C3990ED34445F8B3AF162221176C14D5A4793BB37E46A358540CDC6BD5198A60CFBBC7D4BF81BCAC5B7DA39F570E8570F4BD0EE134F5D924B187 (string)
++ description: CS-CCS-000 (string)
+
+### RequestAP [/protocol/requestAP]
+
+#### Send request [POST]
++ Request (application/json)
+    + Attributes (Request)
+
++ Response 200 (aplication/json)
+    + Attributes (Reply)
+
+### RequestAS [/protocol/requestAS]
+
+#### Send request [POST]
++ Request (application/json)
+    + Attributes (Request)
+
++ Response 200 (aplication/json)
+    + Attributes (Reply)
+
+
+## Registry [/registry]
+
+This API registers and unregisters apllications and Kerberos sessions.
+
+### Data Structures
+
+#### appRegistry (object)
++ id: 0001020304050607 (string)
++ key: 000102030405060708090a0b0c0d0e0f000102030405060708090a0b0c0d0e0f (string)
+
+#### sessionRegistry (object)
++ sessionId: 3998beec2b484d42cdbbd088ed1fec29 (string)
++ transactionId: 7ae76bf2bb4c4dc3cdffda3c5e37c9e4 (string)
+
+### Register Application [/registry/registerComponent]
+
+#### Register new application [POST]
++ Request (application/json)
+    + Attributes (appRegistry)
+
++ Response 200 (aplication/json)
+    {
+        "result" : "true"
+    }
+
+### Unregister Application [/registry/unregisterComponent]
+
+#### Delete application registry [POST]
++ Request (application/json)
+    + Attributes (appRegistry)
+
++ Response 200 (aplication/json)
+    {
+        "result" : "true"
+    }
+
+### Register Session [/registry/registerSession]
+
+#### Register new session [POST]
++ Request (application/json)
+    + Attributes (sessionRegistry)
+
++ Response 200 (aplication/json)
+    {
+        "result" : "true"
+    }
+
+### Unregister Session [/registry/unregisterSession]
+
+#### Delete session registry [POST]
++ Request (application/json)
+    + Attributes (sessionRegistry)
+
++ Response 200 (aplication/json)
+    {
+        "result" : "true"
+    }
