@@ -23,4 +23,6 @@ public interface KerberosIntegrationFacade {
 	Map<String, Object> processRequestAP(boolean skipValidation, String sessionId, String transactionId, String request);
 	
 	String findParameterByKey(String key);
+	
+	String getSessionInfo(String sessionId);
 }

@@ -64,5 +64,10 @@ public class KerberosIntegrationFacadeBean implements KerberosIntegrationFacade 
 	public String findParameterByKey(String key) {
 		return configService.findConfigurationByKey(key);
 	}
+	
+	@Override
+	public String getSessionInfo(String sessionId) {
+		return kerberosManagementService.getUserInfo(sessionId);
+	}
 
 }

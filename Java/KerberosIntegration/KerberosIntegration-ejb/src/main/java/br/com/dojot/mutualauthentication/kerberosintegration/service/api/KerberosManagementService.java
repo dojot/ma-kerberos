@@ -16,4 +16,6 @@ public interface KerberosManagementService {
 	KerberosRegisterReplyTO unregisterComponent(String componentId);
 
 	KerberosRegisterReplyTO registerComponent(String componentId, String key);
+	
+	String getUserInfo(String userId);
 }
