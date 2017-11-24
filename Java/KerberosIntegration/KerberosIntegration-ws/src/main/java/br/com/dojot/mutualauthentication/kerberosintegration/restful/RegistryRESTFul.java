@@ -6,7 +6,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -14,6 +13,7 @@ import javax.ws.rs.core.Response;
 import br.com.dojot.mutualauthentication.kerberosintegration.beans.to.KerberosClientTO;
 import br.com.dojot.mutualauthentication.kerberosintegration.beans.to.KerberosEntityTO;
 import br.com.dojot.mutualauthentication.kerberosintegration.beans.to.KerberosRegisterReplyTO;
+import br.com.dojot.mutualauthentication.kerberosintegration.beans.to.KerberosSessionInfoTO;
 import br.com.dojot.mutualauthentication.kerberosintegration.exception.GenericException;
 import br.com.dojot.mutualauthentication.kerberosintegration.facade.api.KerberosIntegrationFacade;
 
@@ -61,14 +61,15 @@ public class RegistryRESTFul {
 	}
 	
 	@GET
-	@Path("/session/{sessionId}")
+	@Path("/session/")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response session(@PathParam("sessionId") String sessionId) {
-		String result = kerberosIntegrationFacade.getSessionInfo(sessionId);
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response session(KerberosSessionInfoTO to) {
+		String result = kerberosIntegrationFacade.getSessionInfo(to.getSessionId());
 		if(result == null) {
 			return Response.noContent().build();
 		}
-		String json = "\"result\":\"" + result + "\"";
+		String json = "{\"result\":\"" + result + "\"}";
 		return Response.ok(json).build();		
 	}
 }
