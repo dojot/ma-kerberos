@@ -134,5 +134,10 @@ public class KerberosManagementServiceImpl implements KerberosManagementService 
 		}
 		return to;
 	}
+	
+	@Override
+	public String getUserInfo(String sessionId) {
+		return sessionService.get(sessionId);
+	}
 
 }
