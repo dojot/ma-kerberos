@@ -143,15 +143,15 @@ public class KerberosProtocolServiceImpl implements KerberosProtocolService {
 			} else {
 				String state = sessionService.get(kerberosSessionId);
 				if (state != null && state.equals(KerberosIntegrationConstants.KERBEROS_WAIT_REQUEST_AS)) {
-					sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_PROCESS_REQUEST_AS, null);
+					sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_PROCESS_REQUEST_AS, KerberosIntegrationConstants.DEFAULT_EXPIRATION_INTERVAL);
 					HashMap<String, Object> decoded = verifyAndDecodeRequestAS(encodedByteInput, reply);
 					generateReplyAS(skipValidation, kerberosSessionId, decoded, reply);
-					sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_WAIT_REQUEST_AP, null);
+					sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_WAIT_REQUEST_AP, KerberosIntegrationConstants.DEFAULT_EXPIRATION_INTERVAL);
 				} else {
 					Error error = new Error(ErrorCode.INVALID_MESSAGE);
 					reply.put(KerberosProtocolServiceImpl.REPLY_FOR_CLIENT_KERBEROS, error.getEncoded());
 					reply.put(KerberosProtocolServiceImpl.REPLY_FOR_EXTERNAL_APPLICATION, error.getDescription());
-					sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_NOT_COMPLETED, null);
+					sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_NOT_COMPLETED, KerberosIntegrationConstants.DEFAULT_EXPIRATION_INTERVAL);
 					loggingService.saveLogging(Level.ERROR, "KERBEROS_INTEGRATION", "SISTEMA", "Recebido RequestAS sem sessao ativa.");
 				}
 			}
@@ -223,7 +223,7 @@ public class KerberosProtocolServiceImpl implements KerberosProtocolService {
 				String state = sessionService.get(kerberosSessionId);
 				if (state != null) {
 					if (state.equals(KerberosIntegrationConstants.KERBEROS_WAIT_REQUEST_AP)) {
-						sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_PROCESS_REQUEST_AP, null);
+						sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_PROCESS_REQUEST_AP, KerberosIntegrationConstants.DEFAULT_EXPIRATION_INTERVAL);
 						decoded = verifyAndDecodeRequestAP(encodedByteInput, reply);
 						generateReplyAP(skipValidation, kerberosSessionId, transactionId, decoded, reply);
 						sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_COMPLETED, KerberosIntegrationConstants.DEFAULT_EXPIRATION_INTERVAL);
@@ -232,7 +232,7 @@ public class KerberosProtocolServiceImpl implements KerberosProtocolService {
 						Error error = new Error(ErrorCode.INVALID_MESSAGE);
 						reply.put(KerberosProtocolServiceImpl.REPLY_FOR_CLIENT_KERBEROS, error.getEncoded());
 						reply.put(KerberosProtocolServiceImpl.REPLY_FOR_EXTERNAL_APPLICATION, error.getDescription());
-						sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_NOT_COMPLETED, null);
+						sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_NOT_COMPLETED, KerberosIntegrationConstants.DEFAULT_EXPIRATION_INTERVAL);
 						loggingService.saveLogging(Level.ERROR, "KERBEROS_INTEGRATION", "SISTEMA", "Recebido RequestAP sem o correto estado da sessao.");
 					}
 				} else {
