@@ -111,7 +111,7 @@ public class KerberosManagementServiceImpl implements KerberosManagementService 
 		to.setResult(false);
 		String kerberosSessionId = Utils.generateKerberosSessionId(sessionId, transactionId);
 		if (sessionService.get(kerberosSessionId) == null) {
-			sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_WAIT_REQUEST_AS, null);
+			sessionService.save(kerberosSessionId, KerberosIntegrationConstants.KERBEROS_WAIT_REQUEST_AS, KerberosIntegrationConstants.DEFAULT_EXPIRATION_INTERVAL);
 			to.setResult(true);
 		}
 		return to;
