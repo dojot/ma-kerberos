@@ -541,7 +541,8 @@ public class KerberosProtocolServiceImpl implements KerberosProtocolService {
 
 		/* Check if authenticator is not a replay. */
 		String lastAuthTime = replayService.get(CryptoUtil.ByteArrayToHexStr(cnameAuth));
-		if (!skipValidation && lastAuthTime != null) {
+		String authTimeString = new String(authtime);
+		if (!skipValidation && lastAuthTime != null && lastAuthTime.equals(authTimeString)) {
 			Error error = new Error(ErrorCode.KRB_AP_ERR_REPEAT);
 			reply.put(REPLY_FOR_CLIENT_KERBEROS, error.getEncoded());
 			reply.put(REPLY_FOR_EXTERNAL_APPLICATION, error.getDescription());
