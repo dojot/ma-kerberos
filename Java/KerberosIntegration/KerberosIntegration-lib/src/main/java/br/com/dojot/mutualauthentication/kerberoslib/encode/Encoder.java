@@ -4,8 +4,8 @@ import java.util.HashMap;
 
 public interface Encoder {
 	public static final int PRINCIPAL_NAME_LENGTH = 16;
-	public static final int PRINCIPAL_NAME_FIXED_LENGTH = PRINCIPAL_NAME_LENGTH / 2;
-	public static final int PRINCIPAL_NAME_RANDOM_LENGTH = PRINCIPAL_NAME_LENGTH / 2;
+	public static final int PRINCIPAL_NAME_FIXED_LENGTH = PRINCIPAL_NAME_LENGTH;
+	public static final int PRINCIPAL_NAME_RANDOM_LENGTH = 0;
 	public static final int NONCE_LENGTH = 4;
 	public static final int KEY_LENGTH = 16;
 	public static final int IV_LENGTH = 12;

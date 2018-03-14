@@ -48,9 +48,9 @@ public final class EncryptedData implements Encoder, Cloneable, SecureWipe {
 		this.encoded = encoded.clone();
 
 		/* Check if fields have correct sizes */
-		if (this.encoded.length < 2
-				|| this.encoded.length < (2 + this.encoded[0] & 0xff
-						+ this.encoded[1] & 0xff)) {
+		if ( (this.encoded.length < 2) || 
+		     (this.encoded.length < (2 + (this.encoded[0] & 0xff)
+						+ (this.encoded[1] & 0xff)))) {
 			throw new IllegalArgumentException("Invalid parameter length");
 		}
 
@@ -75,15 +75,13 @@ public final class EncryptedData implements Encoder, Cloneable, SecureWipe {
 		/* Initialize the encrypted data part */
 		this.ivLength = this.encoded[0];
 		this.ciphertextLength = this.encoded[1];
-		this.iv = new byte[this.encoded[0] & 0xff];
-		this.ciphertext = new byte[this.encoded[1] & 0xff];
-
 		offset = 2;
-		this.iv = new byte[encoded[0] & 0xff];
+		
+		this.iv = new byte[this.encoded[0] & 0xff];
 		System.arraycopy(this.encoded, offset, this.iv, 0, encoded[0] & 0xff);
 		offset += this.encoded[0] & 0xff;
 
-		this.ciphertext = new byte[encoded[1] & 0xff];
+		this.ciphertext = new byte[this.encoded[1] & 0xff];
 		System.arraycopy(this.encoded, offset, this.ciphertext, 0,
 				encoded[1] & 0xff);
 		offset += this.encoded[1] & 0xff;
